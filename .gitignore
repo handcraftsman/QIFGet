@@ -1,0 +1,9 @@
+bin
+obj
+_ReSharper.*
+*.suo
+*.user
+dist
+*.cache
+*.ReSharper
+codestyle.xml
