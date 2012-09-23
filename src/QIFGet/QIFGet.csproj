@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\RecordsToTransactionConverter.cs" />
+    <Compile Include="Domain\QIFTransaction.cs" />
     <Compile Include="MvbaCore\CodeQuery\FieldInfoExtensions.cs" />
     <Compile Include="MvbaCore\CodeQuery\MemberInfoExtensions.cs" />
     <Compile Include="Converters\TextToRecordConverter.cs" />

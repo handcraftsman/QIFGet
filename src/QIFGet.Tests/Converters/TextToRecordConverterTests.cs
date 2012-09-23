@@ -23,7 +23,7 @@ namespace QIFGet.Tests.Converters
     public class TextToRecordConverterTests
     {
         [TestFixture]
-        public class Given_text_containing_only_a_QIF_end_of_section_code
+        public class Given_text_containing_only_a_QIF_end_of_transaction_code
         {
             private TextToRecordConverter _textToRecordConverter;
 
@@ -34,11 +34,11 @@ namespace QIFGet.Tests.Converters
             }
 
             [Test]
-            public void Should_return_a_SectionEnd_record()
+            public void Should_return_a_TransactionEnd_record()
             {
                 const string input = "^";
                 var record = _textToRecordConverter.Convert(input);
-                record.RecordType.ShouldBeEqualTo(QIFRecordType.SectionEnd);
+                record.RecordType.ShouldBeEqualTo(QIFRecordType.TransactionEnd);
                 record.Data.ShouldBeEqualTo("");
             }
         }
@@ -107,7 +107,7 @@ namespace QIFGet.Tests.Converters
         }
 
         [TestFixture]
-        public class Given_text_that_does_not_contain_a_QIF_header_or_section_end_code
+        public class Given_text_that_does_not_contain_a_QIF_header_or_transaction_end_code
         {
             private TextToRecordConverter _textToRecordConverter;
 

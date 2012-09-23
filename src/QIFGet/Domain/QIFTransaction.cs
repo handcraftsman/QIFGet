@@ -1,4 +1,4 @@
-// * **************************************************************************
+﻿// * **************************************************************************
 // * Copyright (c) Clinton Sheppard <sheppard@cs.unm.edu>
 // *
 // * This source code is subject to terms and conditions of the MIT License.
@@ -11,19 +11,17 @@
 // * source repository: https://github.com/handcraftsman/QIFGet
 // * **************************************************************************
 
-using QIFGet.NamedConstants;
+using System.Collections.Generic;
 
 namespace QIFGet.Domain
 {
-    public class QIFRecord
+    public class QIFTransaction
     {
-        public QIFRecord(QIFRecordType recordType, string getData)
+        public QIFTransaction(IList<QIFRecord> records)
         {
-            RecordType = recordType;
-            Data = getData;
+            Records = records;
         }
 
-        public string Data { get; private set; }
-        public QIFRecordType RecordType { get; private set; }
+        public IList<QIFRecord> Records { get; private set; }
     }
 }

@@ -23,7 +23,7 @@ namespace QIFGet.NamedConstants
         public static readonly QIFRecordType AccountHeader = new QIFRecordType("account header", x => x.StartsWith("!Account"), x => "");
         public static readonly QIFRecordType Content = new QIFRecordType("content", x => !GetAll().Where(y => y.Key != "content").Any(y => y.IsMatch(x)), x => x);
         public static readonly QIFRecordType OptionHeader = new QIFRecordType("option header", x => x.StartsWith("!Option:"), x => x.Substring("!Option:".Length));
-        public static readonly QIFRecordType SectionEnd = new QIFRecordType("section end", x => x == "^", x => "");
+        public static readonly QIFRecordType TransactionEnd = new QIFRecordType("transaction end", x => x == "^", x => "");
         public static readonly QIFRecordType TypeHeader = new QIFRecordType("type header", x => x.StartsWith("!Type:"), x => x.Substring("!Type:".Length));
 
         private QIFRecordType(string key, Func<string, bool> isMatch, Func<string, string> getData)
