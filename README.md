@@ -1,6 +1,6 @@
-## GIFGet - QIF formatted data parser
+## GIFGet - Qicken Interchange Format (QIF) data reader
 
-This C# library parses QIF formatted data.
+This C# library facilitates importing data from Qicken Interchange Format (.qif) files.
 
 ## License		
 
