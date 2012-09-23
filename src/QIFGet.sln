@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIFGet", "QIFGet\QIFGet.csproj", "{2C811D2F-3BD7-43D7-A894-49811EC7CA6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QIFGet.Tests", "QIFGet.Tests\QIFGet.Tests.csproj", "{D51F8F31-FAA1-49C3-BDA9-F96B9184355F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{2C811D2F-3BD7-43D7-A894-49811EC7CA6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C811D2F-3BD7-43D7-A894-49811EC7CA6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C811D2F-3BD7-43D7-A894-49811EC7CA6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D51F8F31-FAA1-49C3-BDA9-F96B9184355F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51F8F31-FAA1-49C3-BDA9-F96B9184355F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D51F8F31-FAA1-49C3-BDA9-F96B9184355F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51F8F31-FAA1-49C3-BDA9-F96B9184355F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
