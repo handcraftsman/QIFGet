@@ -45,7 +45,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MvbaCore\CodeQuery\FieldInfoExtensions.cs" />
+    <Compile Include="MvbaCore\CodeQuery\MemberInfoExtensions.cs" />
+    <Compile Include="Converters\TextToRecordConverter.cs" />
+    <Compile Include="Domain\QIFRecord.cs" />
+    <Compile Include="MvbaCore\DefaultKeyAttribute.cs" />
+    <Compile Include="MvbaCore\NamedConstants\INamedConstant.cs" />
+    <Compile Include="MvbaCore\NamedConstants\NamedConstant.cs" />
+    <Compile Include="MvbaCore\NamedConstants\NamedConstantExtensions.cs" />
+    <Compile Include="NamedConstants\QIFRecordType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MvbaCore\provenence.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

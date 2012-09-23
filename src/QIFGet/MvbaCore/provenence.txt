@@ -1,0 +1,4 @@
+﻿all files in this directory are from:
+https://github.com/mvba/MvbaCore
+
+license: MIT license
