@@ -15,30 +15,18 @@ using System.Collections.Generic;
 using System.Linq;
 
 using QIFGet.Domain;
+using QIFGet.Extensions;
 using QIFGet.NamedConstants;
 
 namespace QIFGet.Converters
 {
-    public class RecordsToTransactionConverter
+    public class TransactionConverter
     {
-        public IEnumerable<QIFTransaction> Combine(IEnumerable<QIFRecord> records)
+        public IEnumerable<QIFTransaction> CombineIntoTransactions(IEnumerable<QIFRecord> records)
         {
-            var transactionRecords = new List<QIFRecord>();
-            foreach (var record in records)
-            {
-                if (record.RecordType == QIFRecordType.TransactionEnd)
-                {
-                    if (transactionRecords.Any())
-                    {
-                        yield return new QIFTransaction(transactionRecords);
-                        transactionRecords = new List<QIFRecord>();
-                    }
-                }
-                else
-                {
-                    transactionRecords.Add(record);
-                }
-            }
+            return records
+                .Group(record => record.RecordType == QIFRecordType.TransactionEnd)
+                .Select(transactionRecords => new QIFTransaction(transactionRecords));
         }
     }
 }

@@ -53,8 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\RecordsToTranscationConverterTests.cs" />
-    <Compile Include="Converters\TextToRecordConverterTests.cs" />
+    <Compile Include="Converters\TranscationConverterTests.cs" />
+    <Compile Include="Converters\RecordConverterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

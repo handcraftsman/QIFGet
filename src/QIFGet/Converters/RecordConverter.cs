@@ -18,7 +18,7 @@ using QIFGet.NamedConstants;
 
 namespace QIFGet.Converters
 {
-    public class TextToRecordConverter
+    public class RecordConverter
     {
         public QIFRecord Convert(string qiftext)
         {

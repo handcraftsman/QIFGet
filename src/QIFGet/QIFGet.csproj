@@ -45,11 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\RecordsToTransactionConverter.cs" />
+    <Compile Include="Converters\TransactionConverter.cs" />
     <Compile Include="Domain\QIFTransaction.cs" />
+    <Compile Include="Extensions\IEnumerableTExtensions.cs" />
     <Compile Include="MvbaCore\CodeQuery\FieldInfoExtensions.cs" />
     <Compile Include="MvbaCore\CodeQuery\MemberInfoExtensions.cs" />
-    <Compile Include="Converters\TextToRecordConverter.cs" />
+    <Compile Include="Converters\RecordConverter.cs" />
     <Compile Include="Domain\QIFRecord.cs" />
     <Compile Include="MvbaCore\DefaultKeyAttribute.cs" />
     <Compile Include="MvbaCore\NamedConstants\INamedConstant.cs" />

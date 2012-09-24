@@ -20,24 +20,24 @@ using QIFGet.NamedConstants;
 
 namespace QIFGet.Tests.Converters
 {
-    public class TextToRecordConverterTests
+    public class RecordConverterTests
     {
         [TestFixture]
         public class Given_text_containing_only_a_QIF_end_of_transaction_code
         {
-            private TextToRecordConverter _textToRecordConverter;
+            private RecordConverter _recordConverter;
 
             [SetUp]
             public void Before_each_test()
             {
-                _textToRecordConverter = new TextToRecordConverter();
+                _recordConverter = new RecordConverter();
             }
 
             [Test]
             public void Should_return_a_TransactionEnd_record()
             {
                 const string input = "^";
-                var record = _textToRecordConverter.Convert(input);
+                var record = _recordConverter.Convert(input);
                 record.RecordType.ShouldBeEqualTo(QIFRecordType.TransactionEnd);
                 record.Data.ShouldBeEqualTo("");
             }
@@ -46,19 +46,19 @@ namespace QIFGet.Tests.Converters
         [TestFixture]
         public class Given_text_starting_with_a_QIF_header_account_code
         {
-            private TextToRecordConverter _textToRecordConverter;
+            private RecordConverter _recordConverter;
 
             [SetUp]
             public void Before_each_test()
             {
-                _textToRecordConverter = new TextToRecordConverter();
+                _recordConverter = new RecordConverter();
             }
 
             [Test]
             public void Should_return_an_AccountHeader_record_with_the_contents_of_the_text()
             {
                 const string input = "!Account";
-                var record = _textToRecordConverter.Convert(input);
+                var record = _recordConverter.Convert(input);
                 record.RecordType.ShouldBeEqualTo(QIFRecordType.AccountHeader);
                 record.Data.ShouldBeEqualTo("");
             }
@@ -67,19 +67,19 @@ namespace QIFGet.Tests.Converters
         [TestFixture]
         public class Given_text_starting_with_a_QIF_header_option_code
         {
-            private TextToRecordConverter _textToRecordConverter;
+            private RecordConverter _recordConverter;
 
             [SetUp]
             public void Before_each_test()
             {
-                _textToRecordConverter = new TextToRecordConverter();
+                _recordConverter = new RecordConverter();
             }
 
             [Test]
             public void Should_return_a_OptionHeader_record_with_the_contents_of_the_text()
             {
                 const string input = "!Option:AutoSwitch";
-                var record = _textToRecordConverter.Convert(input);
+                var record = _recordConverter.Convert(input);
                 record.RecordType.ShouldBeEqualTo(QIFRecordType.OptionHeader);
                 record.Data.ShouldBeEqualTo("AutoSwitch");
             }
@@ -88,19 +88,19 @@ namespace QIFGet.Tests.Converters
         [TestFixture]
         public class Given_text_starting_with_a_QIF_header_type_code
         {
-            private TextToRecordConverter _textToRecordConverter;
+            private RecordConverter _recordConverter;
 
             [SetUp]
             public void Before_each_test()
             {
-                _textToRecordConverter = new TextToRecordConverter();
+                _recordConverter = new RecordConverter();
             }
 
             [Test]
             public void Should_return_a_TypeHeader_record_with_the_contents_of_the_text()
             {
                 const string input = "!Type:Cash";
-                var record = _textToRecordConverter.Convert(input);
+                var record = _recordConverter.Convert(input);
                 record.RecordType.ShouldBeEqualTo(QIFRecordType.TypeHeader);
                 record.Data.ShouldBeEqualTo("Cash");
             }
@@ -109,19 +109,19 @@ namespace QIFGet.Tests.Converters
         [TestFixture]
         public class Given_text_that_does_not_contain_a_QIF_header_or_transaction_end_code
         {
-            private TextToRecordConverter _textToRecordConverter;
+            private RecordConverter _recordConverter;
 
             [SetUp]
             public void Before_each_test()
             {
-                _textToRecordConverter = new TextToRecordConverter();
+                _recordConverter = new RecordConverter();
             }
 
             [Test]
             public void Should_return_a_Content_record_with_the_contents_of_the_text()
             {
                 const string input = "NChecking";
-                var record = _textToRecordConverter.Convert(input);
+                var record = _recordConverter.Convert(input);
                 record.RecordType.ShouldBeEqualTo(QIFRecordType.Content);
                 record.Data.ShouldBeEqualTo("NChecking");
             }

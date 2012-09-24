@@ -23,17 +23,17 @@ using QIFGet.NamedConstants;
 
 namespace QIFGet.Tests.Converters
 {
-    public class RecordsToTranscationConverterTests
+    public class TranscationConverterTests
     {
         [TestFixture]
         public class Given_QIFRecords_for_a_single_transaction
         {
-            private RecordsToTransactionConverter _recordsToTransactionConverter;
+            private TransactionConverter _transactionConverter;
 
             [SetUp]
             public void Before_each_test()
             {
-                _recordsToTransactionConverter = new RecordsToTransactionConverter();
+                _transactionConverter = new TransactionConverter();
             }
 
             [Test]
@@ -47,7 +47,7 @@ namespace QIFGet.Tests.Converters
                         new QIFRecord(QIFRecordType.Content, "$0.44"),
                         new QIFRecord(QIFRecordType.TransactionEnd, ""),
                     };
-                var transactions = _recordsToTransactionConverter.Combine(records).ToList();
+                var transactions = _transactionConverter.CombineIntoTransactions(records).ToList();
                 transactions.Count.ShouldBeEqualTo(1);
                 var transaction = transactions.First();
                 transaction.Records.Count.ShouldBeEqualTo(4);
@@ -58,12 +58,12 @@ namespace QIFGet.Tests.Converters
         [TestFixture]
         public class Given_QIFRecords_for_multiple_transactions
         {
-            private RecordsToTransactionConverter _recordsToTransactionConverter;
+            private TransactionConverter _transactionConverter;
 
             [SetUp]
             public void Before_each_test()
             {
-                _recordsToTransactionConverter = new RecordsToTransactionConverter();
+                _transactionConverter = new TransactionConverter();
             }
 
             [Test]
@@ -84,7 +84,7 @@ namespace QIFGet.Tests.Converters
                         new QIFRecord(QIFRecordType.Content, "T-40"),
                         new QIFRecord(QIFRecordType.TransactionEnd, ""),
                     };
-                var transactions = _recordsToTransactionConverter.Combine(records).ToList();
+                var transactions = _transactionConverter.CombineIntoTransactions(records).ToList();
                 transactions.Count.ShouldBeEqualTo(2);
                 var transaction1 = transactions.First();
                 transaction1.Records.Count.ShouldBeEqualTo(4);
