@@ -53,8 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\TranscationConverterTests.cs" />
-    <Compile Include="Converters\RecordConverterTests.cs" />
+    <Compile Include="API\QIFReaderTests.cs" />
+    <Compile Include="Domain\NamedConstants\QIFContentTypeTests.cs" />
+    <Compile Include="Extensions\ConversionExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

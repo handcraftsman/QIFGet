@@ -12,7 +12,7 @@ using System;
 namespace QIFGet.MvbaCore
 {
 	[AttributeUsage(AttributeTargets.Field, Inherited = true)]
-	internal class DefaultKeyAttribute : Attribute
+	public class DefaultKeyAttribute : Attribute
 	{
 	}
 }

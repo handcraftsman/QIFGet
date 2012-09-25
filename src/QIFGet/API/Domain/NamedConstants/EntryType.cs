@@ -11,22 +11,23 @@
 // * source repository: https://github.com/handcraftsman/QIFGet
 // * **************************************************************************
 
-using System.Collections.Generic;
-using System.Linq;
+using System;
 
-using QIFGet.Domain;
-using QIFGet.Extensions;
-using QIFGet.NamedConstants;
+using QIFGet.MvbaCore.NamedConstants;
 
-namespace QIFGet.Converters
+namespace QIFGet.API.Domain.NamedConstants
 {
-    public class TransactionConverter
+    public class EntryType : NamedConstant<EntryType>
     {
-        public IEnumerable<QIFTransaction> CombineIntoTransactions(IEnumerable<QIFRecord> records)
+        public static readonly EntryType Credit = new EntryType("credit", x => x.Amount != null && x.Amount >= 0m);
+        public static readonly EntryType Debit = new EntryType("debit", x => x.Amount != null && x.Amount < 0m);
+
+        private EntryType(string key, Func<Entry, bool> isMatch)
         {
-            return records
-                .Group(record => record.RecordType == QIFRecordType.TransactionEnd)
-                .Select(transactionRecords => new QIFTransaction(transactionRecords));
+            IsMatch = isMatch;
+            Add(key, this);
         }
+
+        public Func<Entry, bool> IsMatch { get; private set; }
     }
 }

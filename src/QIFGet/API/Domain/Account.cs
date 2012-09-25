@@ -10,22 +10,17 @@
 // *
 // * source repository: https://github.com/handcraftsman/QIFGet
 // * **************************************************************************
+using System.Collections.Generic;
 
-using System.Linq;
-
-using QIFGet.Domain;
-using QIFGet.NamedConstants;
-
-namespace QIFGet.Converters
+namespace QIFGet.API.Domain
 {
-    public class RecordConverter
+    public class Account
     {
-        public QIFRecord Convert(string qiftext)
+        public Account(IList<Entry> entries)
         {
-            var recordType = QIFRecordType
-                .GetAll()
-                .First(x => x.IsMatch(qiftext));
-            return new QIFRecord(recordType, recordType.GetData(qiftext));
+            Entries = entries;
         }
+
+        public IList<Entry> Entries { get; private set; }
     }
 }

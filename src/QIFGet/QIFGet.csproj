@@ -45,18 +45,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\TransactionConverter.cs" />
+    <Compile Include="API\Domain\Account.cs" />
+    <Compile Include="API\Domain\Entry.cs" />
+    <Compile Include="API\Domain\NamedConstants\ClearedStatus.cs" />
+    <Compile Include="API\Domain\NamedConstants\EntryType.cs" />
+    <Compile Include="API\QIFReader.cs" />
+    <Compile Include="Domain\NamedConstants\QIFContentType.cs" />
     <Compile Include="Domain\QIFTransaction.cs" />
-    <Compile Include="Extensions\IEnumerableTExtensions.cs" />
+    <Compile Include="Extensions\ConversionExtensions.cs" />
     <Compile Include="MvbaCore\CodeQuery\FieldInfoExtensions.cs" />
     <Compile Include="MvbaCore\CodeQuery\MemberInfoExtensions.cs" />
-    <Compile Include="Converters\RecordConverter.cs" />
     <Compile Include="Domain\QIFRecord.cs" />
     <Compile Include="MvbaCore\DefaultKeyAttribute.cs" />
+    <Compile Include="MvbaCore\Extensions\IEnumerableTExtensions.cs" />
     <Compile Include="MvbaCore\NamedConstants\INamedConstant.cs" />
     <Compile Include="MvbaCore\NamedConstants\NamedConstant.cs" />
     <Compile Include="MvbaCore\NamedConstants\NamedConstantExtensions.cs" />
-    <Compile Include="NamedConstants\QIFRecordType.cs" />
+    <Compile Include="Domain\NamedConstants\QIFRecordType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

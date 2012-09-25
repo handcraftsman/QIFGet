@@ -11,16 +11,16 @@
 // * source repository: https://github.com/handcraftsman/QIFGet
 // * **************************************************************************
 
-using QIFGet.NamedConstants;
+using QIFGet.Domain.NamedConstants;
 
 namespace QIFGet.Domain
 {
     public class QIFRecord
     {
-        public QIFRecord(QIFRecordType recordType, string getData)
+        public QIFRecord(QIFRecordType recordType, string data)
         {
             RecordType = recordType;
-            Data = getData;
+            Data = data;
         }
 
         public string Data { get; private set; }

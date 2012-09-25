@@ -16,24 +16,26 @@ using System.Linq;
 
 using QIFGet.MvbaCore.NamedConstants;
 
-namespace QIFGet.NamedConstants
+namespace QIFGet.Domain.NamedConstants
 {
     public class QIFRecordType : NamedConstant<QIFRecordType>
     {
-        public static readonly QIFRecordType AccountHeader = new QIFRecordType("account header", x => x.StartsWith("!Account"), x => "");
-        public static readonly QIFRecordType Content = new QIFRecordType("content", x => !GetAll().Where(y => y.Key != "content").Any(y => y.IsMatch(x)), x => x);
-        public static readonly QIFRecordType OptionHeader = new QIFRecordType("option header", x => x.StartsWith("!Option:"), x => x.Substring("!Option:".Length));
-        public static readonly QIFRecordType TransactionEnd = new QIFRecordType("transaction end", x => x == "^", x => "");
-        public static readonly QIFRecordType TypeHeader = new QIFRecordType("type header", x => x.StartsWith("!Type:"), x => x.Substring("!Type:".Length));
+        public static readonly QIFRecordType AccountHeader = new QIFRecordType("account header", x => x.StartsWith("!Account"), x => "", true);
+        public static readonly QIFRecordType Content = new QIFRecordType("content", x => !GetAll().Where(y => y.Key != "content").Any(y => y.IsMatch(x)), x => x, false);
+        public static readonly QIFRecordType OptionHeader = new QIFRecordType("option header", x => x.StartsWith("!Option:"), x => x.Substring("!Option:".Length), true);
+        public static readonly QIFRecordType TransactionEnd = new QIFRecordType("transaction end", x => x == "^", x => "", false);
+        public static readonly QIFRecordType TypeHeader = new QIFRecordType("type header", x => x.StartsWith("!Type:"), x => x.Substring("!Type:".Length), true);
 
-        private QIFRecordType(string key, Func<string, bool> isMatch, Func<string, string> getData)
+        private QIFRecordType(string key, Func<string, bool> isMatch, Func<string, string> getData, bool isHeader)
         {
             IsMatch = isMatch;
             GetData = getData;
+            IsHeader = isHeader;
             Add(key, this);
         }
 
         public Func<string, string> GetData { get; private set; }
+        public bool IsHeader { get; private set; }
         public Func<string, bool> IsMatch { get; private set; }
     }
 }
