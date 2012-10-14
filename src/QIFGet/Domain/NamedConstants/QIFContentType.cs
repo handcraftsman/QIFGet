@@ -24,13 +24,16 @@ namespace QIFGet.Domain.NamedConstants
     {
         public static readonly QIFContentType AccountName = new QIFContentType("account name", (e, x) => e.IsAccountHeader && x.Data.StartsWith("N"), (e, x) => e.AccountName = x.Data.Substring(1));
         public static readonly QIFContentType AccountType = new QIFContentType("account type", (e, x) => e.IsAccountHeader && x.Data.StartsWith("T"), (e, x) => e.AccountType = x.Data.Substring(1));
-        public static readonly QIFContentType Amount = new QIFContentType("amount", (e, x) => !e.IsAccountHeader && x.Data.StartsWith("T"), (e, x) => e.Amount = decimal.Parse(x.Data.Substring(1)));
+        public static readonly QIFContentType Amount = new QIFContentType("amount", (e, x) => !e.IsAccountHeader && x.Data.StartsWith("T"), (e, x) => e.DollarAmount = decimal.Parse(x.Data.Substring(1)));
         public static readonly QIFContentType Category = new QIFContentType("category", (e, x) => x.Data.StartsWith("L"), (e, x) => e.Category = x.Data.Substring(1));
         public static readonly QIFContentType CheckNumber = new QIFContentType("check number", (e, x) => !e.IsAccountHeader && x.Data.StartsWith("N"), (e, x) => e.CheckNumber = x.Data.Substring(1));
         public static readonly QIFContentType ClearedStatus = new QIFContentType("cleared status", (e, x) => x.Data.StartsWith("C"), (e, x) => e.Status = API.Domain.NamedConstants.ClearedStatus.GetAll().First(y => y.IsMatch(x.Data.Substring(1))));
         public static readonly QIFContentType Date = new QIFContentType("date", (e, x) => x.Data.StartsWith("D"), (e, x) => e.Date = x.Data.Substring(1).GetDate());
+        public static readonly QIFContentType EachPrice = new QIFContentType("each price", (e, x) => !e.IsAccountHeader && x.Data.StartsWith("I"), (e, x) => e.EachPrice = x.Data.TrimEnd().Length > 1 ? decimal.Parse(x.Data.Substring(1)) : (decimal?)null);
+        public static readonly QIFContentType ItemDescription = new QIFContentType("item description", (e, x) => x.Data.StartsWith("Y"), (e, x) => e.ItemDescription = x.Data.Substring(1));
         public static readonly QIFContentType Memo = new QIFContentType("memo", (e, x) => x.Data.StartsWith("M"), (e, x) => e.Memo = x.Data.Substring(1));
         public static readonly QIFContentType Payee = new QIFContentType("payee", (e, x) => x.Data.StartsWith("P"), (e, x) => e.Payee = x.Data.Substring(1));
+        public static readonly QIFContentType Quantity = new QIFContentType("quantity", (e, x) => !e.IsAccountHeader && x.Data.StartsWith("Q"), (e, x) => e.Quantity = x.Data.TrimEnd().Length > 1 ? decimal.Parse(x.Data.Substring(1)) : (decimal?)null);
         public static readonly QIFContentType TransferAmount = new QIFContentType("transfer amount", (e, x) => x.Data.StartsWith("$"), (e, x) => e.TransferAmount = decimal.Parse(x.Data.Substring(1)));
 
         public QIFContentType(string key, Func<Entry, QIFRecord, bool> isMatch, Action<Entry, QIFRecord> update)

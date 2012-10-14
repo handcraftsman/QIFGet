@@ -28,7 +28,7 @@ namespace QIFGet.Tests.Domain.NamedConstants
         public class AccountName
         {
             [TestFixture]
-            public class Given__PPersonal_Checking
+            public class Given__NPersonal_Checking
             {
                 private const string Input = "NPersonal_Checking";
                 private QIFContentType _contentType;
@@ -91,9 +91,9 @@ namespace QIFGet.Tests.Domain.NamedConstants
                 public void Update_should_set_the_value_on_the_Entry()
                 {
                     _contentType.Update(_entry, _record);
-                    _entry.Amount.ShouldNotBeNull();
+                    _entry.DollarAmount.ShouldNotBeNull();
 // ReSharper disable PossibleInvalidOperationException
-                    _entry.Amount.Value.ShouldBeEqualTo(47111500000.00m);
+                    _entry.DollarAmount.Value.ShouldBeEqualTo(47111500000.00m);
 // ReSharper restore PossibleInvalidOperationException
                 }
             }
@@ -126,9 +126,9 @@ namespace QIFGet.Tests.Domain.NamedConstants
                 public void Update_should_set_the_value_on_the_Entry()
                 {
                     _contentType.Update(_entry, _record);
-                    _entry.Amount.ShouldNotBeNull();
+                    _entry.DollarAmount.ShouldNotBeNull();
 // ReSharper disable PossibleInvalidOperationException
-                    _entry.Amount.Value.ShouldBeEqualTo(-47.00m);
+                    _entry.DollarAmount.Value.ShouldBeEqualTo(-47.00m);
 // ReSharper restore PossibleInvalidOperationException
                 }
             }
@@ -237,6 +237,112 @@ namespace QIFGet.Tests.Domain.NamedConstants
             }
         }
 
+        public class EachPrice
+        {
+            [TestFixture]
+            public class Given__I
+            {
+                private const string Input = "I";
+
+                private QIFContentType _contentType;
+                private Entry _entry;
+                private QIFRecord _record;
+
+                [TestFixtureSetUp]
+                public void Before_first_test()
+                {
+                    _record = new QIFRecord(QIFRecordType.Content, Input);
+
+                    _entry = new Entry();
+                    _contentType = QIFContentType.EachPrice;
+                }
+
+                [Test]
+                public void IsMatch_should_return_true()
+                {
+                    _contentType.IsMatch(_entry, _record).ShouldBeTrue();
+                }
+
+                [Test]
+                public void Update_should_not_set_the_value_on_the_Entry()
+                {
+                    _contentType.Update(_entry, _record);
+                    _entry.EachPrice.ShouldBeNull();
+                }
+            }
+
+            [TestFixture]
+            public class Given__I15_DOT_964
+            {
+                private const string Input = "I15.964";
+
+                private QIFContentType _contentType;
+                private Entry _entry;
+                private QIFRecord _record;
+
+                [TestFixtureSetUp]
+                public void Before_first_test()
+                {
+                    _record = new QIFRecord(QIFRecordType.Content, Input);
+
+                    _entry = new Entry();
+                    _contentType = QIFContentType.EachPrice;
+                }
+
+                [Test]
+                public void IsMatch_should_return_true()
+                {
+                    _contentType.IsMatch(_entry, _record).ShouldBeTrue();
+                }
+
+                [Test]
+                public void Update_should_set_the_value_on_the_Entry()
+                {
+                    _contentType.Update(_entry, _record);
+                    _entry.EachPrice.ShouldNotBeNull();
+// ReSharper disable PossibleInvalidOperationException
+                    _entry.EachPrice.Value.ShouldBeEqualTo(15.964m);
+// ReSharper restore PossibleInvalidOperationException
+                }
+            }
+        }
+
+        public class ItemDescription
+        {
+            [TestFixture]
+            public class Given__YPersonal_Checking
+            {
+                private const string Input = "YPersonal_Checking";
+                private QIFContentType _contentType;
+                private Entry _entry;
+                private QIFRecord _record;
+
+                [TestFixtureSetUp]
+                public void Before_first_test()
+                {
+                    _record = new QIFRecord(QIFRecordType.Content, Input);
+                    _entry = new Entry
+                        {
+                            IsAccountHeader = false
+                        };
+                    _contentType = QIFContentType.ItemDescription;
+                }
+
+                [Test]
+                public void IsMatch_should_return_true()
+                {
+                    _contentType.IsMatch(_entry, _record).ShouldBeTrue();
+                }
+
+                [Test]
+                public void Update_should_set_the_value_on_the_Entry()
+                {
+                    _contentType.Update(_entry, _record);
+                    _entry.ItemDescription.ShouldBeEqualTo(Input.Substring(1));
+                }
+            }
+        }
+
         public class Memo
         {
             [TestFixture]
@@ -300,6 +406,76 @@ namespace QIFGet.Tests.Domain.NamedConstants
                 {
                     _contentType.Update(_entry, _record);
                     _entry.Payee.ShouldBeEqualTo(Input.Substring(1));
+                }
+            }
+        }
+
+        public class Quantity
+        {
+            [TestFixture]
+            public class Given__Q
+            {
+                private const string Input = "Q";
+
+                private QIFContentType _contentType;
+                private Entry _entry;
+                private QIFRecord _record;
+
+                [TestFixtureSetUp]
+                public void Before_first_test()
+                {
+                    _record = new QIFRecord(QIFRecordType.Content, Input);
+
+                    _entry = new Entry();
+                    _contentType = QIFContentType.Quantity;
+                }
+
+                [Test]
+                public void IsMatch_should_return_true()
+                {
+                    _contentType.IsMatch(_entry, _record).ShouldBeTrue();
+                }
+
+                [Test]
+                public void Update_should_not_set_the_value_on_the_Entry()
+                {
+                    _contentType.Update(_entry, _record);
+                    _entry.Quantity.ShouldBeNull();
+                }
+            }
+
+            [TestFixture]
+            public class Given__Q15_DOT_964
+            {
+                private const string Input = "Q15.964";
+
+                private QIFContentType _contentType;
+                private Entry _entry;
+                private QIFRecord _record;
+
+                [TestFixtureSetUp]
+                public void Before_first_test()
+                {
+                    _record = new QIFRecord(QIFRecordType.Content, Input);
+
+                    _entry = new Entry();
+                    _contentType = QIFContentType.Quantity;
+                }
+
+                [Test]
+                public void IsMatch_should_return_true()
+                {
+                    _contentType.IsMatch(_entry, _record).ShouldBeTrue();
+                }
+
+                [Test]
+                public void Update_should_set_the_value_on_the_Entry()
+                {
+                    _contentType.Update(_entry, _record);
+                    _entry.Quantity.ShouldNotBeNull();
+// ReSharper disable PossibleInvalidOperationException
+                    _entry.Quantity.Value.ShouldBeEqualTo(15.964m);
+// ReSharper restore PossibleInvalidOperationException
                 }
             }
         }

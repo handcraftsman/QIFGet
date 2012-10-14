@@ -60,7 +60,7 @@ T-40
                 entry2.CheckNumber.ShouldBeEqualTo("1701");
                 entry2.Memo.ShouldBeEqualTo("CHECK");
                 entry2.Status.ShouldBeEqualTo(ClearedStatus.Cleared);
-                entry2.Amount.ShouldBeEqualTo(-40m);
+                entry2.DollarAmount.ShouldBeEqualTo(-40m);
             }
         }
     }

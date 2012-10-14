@@ -21,15 +21,18 @@ namespace QIFGet.API.Domain
     {
         public string AccountName { get; set; }
         public string AccountType { get; set; }
-        public decimal? Amount { get; set; }
         public string Category { get; set; }
         public string CheckNumber { get; set; }
         public DateTime? Date { get; set; }
+        public decimal? DollarAmount { get; set; }
+        public decimal? EachPrice { get; set; }
         public EntryType EntryType { get; set; }
         public bool IsAccountHeader { get; set; }
         public bool IsHeader { get; set; }
+        public string ItemDescription { get; set; }
         public string Memo { get; set; }
         public string Payee { get; set; }
+        public decimal? Quantity { get; set; }
         public ClearedStatus Status { get; set; }
         public decimal? TransferAmount { get; set; }
     }

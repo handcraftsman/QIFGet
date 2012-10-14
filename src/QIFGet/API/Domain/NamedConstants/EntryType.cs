@@ -19,8 +19,8 @@ namespace QIFGet.API.Domain.NamedConstants
 {
     public class EntryType : NamedConstant<EntryType>
     {
-        public static readonly EntryType Credit = new EntryType("credit", x => x.Amount != null && x.Amount >= 0m);
-        public static readonly EntryType Debit = new EntryType("debit", x => x.Amount != null && x.Amount < 0m);
+        public static readonly EntryType Credit = new EntryType("credit", x => x.DollarAmount != null && x.DollarAmount >= 0m);
+        public static readonly EntryType Debit = new EntryType("debit", x => x.DollarAmount != null && x.DollarAmount < 0m);
 
         private EntryType(string key, Func<Entry, bool> isMatch)
         {
