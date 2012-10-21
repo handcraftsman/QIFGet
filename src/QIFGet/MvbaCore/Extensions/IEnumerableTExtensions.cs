@@ -13,7 +13,7 @@ using System.Text;
 
 namespace System.Collections.Generic
 {
-    public static class IEnumerableTExtensions
+    internal static class IEnumerableTExtensions
     {
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> items, Action<T> action)
         {
@@ -104,7 +104,7 @@ namespace System.Collections.Generic
         }
     }
 
-    public class ContinuingEnumerator<T> : IEnumerable<T>
+    internal class ContinuingEnumerator<T> : IEnumerable<T>
     {
         private readonly IEnumerator<T> _enumerator;
         private readonly Func<T, T, bool> _keepGrouping;
